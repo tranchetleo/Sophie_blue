@@ -36,27 +36,9 @@
 	</section>
 	<section id="portfolio">
 		<h2>Mes Projets</h2>
+		<div class="filters">
+		</div>
 		<div class="gallery">
-			<script>
-				// fetch the data from the API at http://localhost:5678/api/works
-				fetch('http://localhost:5678/api/works')
-					.then(response => response.json())
-					.then(data => {
-						const gallery = document.querySelector('.gallery');
-						data.forEach(work => {
-							const figure = document.createElement('figure');
-							const img = document.createElement('img');
-							const figcaption = document.createElement('figcaption');
-							img.src = work.imageUrl;
-							img.alt = work.title;
-							figcaption.textContent = work.title;
-							figure.appendChild(img);
-							figure.appendChild(figcaption);
-							gallery.appendChild(figure);
-						});
-					})
-					.catch(error => console.error(error));
-			</script>
 		</div>
 	</section>
 	<section id="contact">
@@ -81,5 +63,6 @@
 		</ul>
 	</nav>
 </footer>
+<script src="./script.js" defer></script>
 </body>
 </html>
