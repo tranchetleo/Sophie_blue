@@ -123,6 +123,19 @@ nav li a {
 li:hover {
 	color: #B1663C;
 }
+
+#edition-mode {
+	width: 100vw;
+	margin: 0 calc(-50vw + 50%);
+	background-color: black;
+	color: white;
+	padding: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
 #introduction {
 	display: flex;
 	align-items: center;
