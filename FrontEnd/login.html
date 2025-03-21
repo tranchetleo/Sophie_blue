@@ -20,7 +20,7 @@
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li><a href="login.html" class="active">login</a></li>
+			<li><a href="login.html" id="loginLink" class="active">login</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -37,7 +37,12 @@
                 <label for="password">Mot de passe</label>
                 <input type="password" name="password" id="password">
             </div>
-            <input type="submit" value="Se connecter">
+			<div>
+				<p class="error"></p>
+			</div>
+            <button type="submit">
+				Se connecter
+			</button>
 
             <p><a href="forgot-password.html" class="forgot-password">Mot de passe oublié ?</a></p>
         </form>
@@ -52,6 +57,7 @@
 		</ul>
 	</nav>
 </footer>
-<script src="./script.js" defer></script>
+<script src="./script.js"></script>
+<script src="./login.js" defer></script>
 </body>
 </html>

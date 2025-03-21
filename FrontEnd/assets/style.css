@@ -239,9 +239,9 @@ input[type="submit"]{
 	margin-bottom: 1em;
 }
 
-	#login form {
-		align-items: center;
-	}
+#login form {
+	align-items: center;
+}
 
 #login form, #login form div {
 	display: flex;
@@ -259,6 +259,26 @@ input[type="submit"]{
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#login button {
+	font-family: 'Syne';
+	font-size: 14px;
+	border: none;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	margin-top: 1em;
+	padding: 10px 20px;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+	cursor: pointer;
+}
+
+#login .error {
+	color: red;
+	margin: auto;
 }
 
 #login .forgot-password {
