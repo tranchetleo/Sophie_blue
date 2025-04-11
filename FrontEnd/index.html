@@ -15,6 +15,40 @@
 	<i class="fa-regular fa-pen-to-square"></i>
 	<p>Mode édition</p>
 </div>
+<div id="edition-modal">
+	<div id="edition-modal-content">
+		<i class="fa-solid fa-xmark" id="close"></i>
+		<div id="edit-gallery">
+			<h2>Galerie photo</h2>
+			<div id="photos"></div>
+			<div class="line"></div>
+			<button id="add-photo-btn">Ajouter une photo</button>
+		</div>
+		<div id="add-photo">
+			<h2>Ajout photo</h2>
+			<form action="#" method="post">
+				<label for="image">Contenu</label>
+				<div class="file">
+					<input type="file" name="image" id="image">
+					<img src="" alt="" class="preview">
+					<div>
+						<i class="fa-regular fa-image" style="font-size: 70px; color: #CBD6DC;"></i>
+						<button>+ Ajouter photo</button>
+						<p>jpg, png : 4mo max</p>
+					</div>
+				</div>
+				<label for="title">Titre</label>
+				<input type="text" name="title" id="title">
+				<label for="cagtegory">Catégorie</label>
+				<select name="cagtegory" id="category"></select>
+				<p class="error"></p>
+			</form>
+
+			<div class="line"></div>
+			<button id="submitWork">Valider</button>
+		</div>
+	</div>
+</div>
 <body>
 <header>
 	<a href="#">

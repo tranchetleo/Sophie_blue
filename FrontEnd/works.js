@@ -72,6 +72,7 @@ function createAllCategoryFilterButton() {
         });
         addActiveClass(button);
     });
+    addActiveClass(button);
     filters.appendChild(button);
 }
 

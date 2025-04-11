@@ -136,6 +136,169 @@ li:hover {
 	gap: 10px;
 }
 
+#edition-modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.5);
+	align-items: center;
+	justify-content: center;
+}
+
+#edition-modal-content {
+	width: 30%;
+	background-color: white;
+	padding: 3em;
+	border-radius: 10px;
+	position: relative;
+}
+
+#edition-modal-content #close {
+	position: absolute;
+	top: 3em;
+	right: 3em;
+	cursor: pointer;
+}
+
+#edition-modal-content h2 {
+	margin-top: 1em;
+	text-align: center;
+	font-size: 26px;
+	font-family: 'Work Sans';
+	font-weight: 500;
+	color: black;
+}
+
+#edition-modal-content .line {
+	width: 100%;
+	margin: auto;
+	background-color: gray;
+	height: 1px;
+}
+
+#edition-modal-content button {
+	font-family: 'Syne';
+	font-size: 14px;
+	border: none;
+	color: white;
+	background-color: #1D6154;
+	margin : auto ;
+	padding: 10px 30px;
+	text-align: center;
+	border-radius: 60px ;
+	cursor: pointer;
+}
+
+#edit-gallery figure{
+	position: relative;
+}
+
+#edit-gallery, #add-photo {
+	display: none;
+	flex-direction: column;
+	gap: 3em;
+	width: 90%;
+	margin: auto;
+}
+
+#edit-gallery #photos {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-column-gap: 10px;
+	grid-row-gap: 20px;
+}
+
+#edit-gallery #photos img {
+	width: 100%;
+}
+
+#edit-gallery .delete-icon {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	width: 17px;
+	height: 17px;
+	font-size: 10px;
+	background-color: black;
+	color: white;
+	border-radius: 2px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+#add-photo form {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+}
+
+#add-photo form input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#add-photo form .file{
+	background-color: #E8F1F6;
+	position: relative;
+	padding: 1em;
+}
+
+#add-photo form .file button {
+	background-color: #CBD6DC;
+	color: #306685;
+}
+
+#add-photo form .file div{
+	position: absolute;
+	width: calc(100% - 2em);
+	height: 150px;
+	top: 1em;
+	left: 1em;
+	z-index: 998;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#add-photo form .file .preview {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+	z-index: 999;
+	background-color: #E8F1F6;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+
+#add-photo form input[type="file"] {
+	/* custom file input with text 'ajouter une photo' */
+	position: relative;
+	height: 150px;
+	width: 100%;
+	opacity: 0;
+	z-index: 1000;
+	cursor: pointer;
+}
+
+#add-photo form select {
+	background-color: white;
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -293,7 +456,7 @@ input[type="submit"]{
 	cursor: pointer;
 }
 
-#login .error {
+.error {
 	color: red;
 	margin: auto;
 }
