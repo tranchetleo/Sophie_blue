@@ -4,6 +4,9 @@ function main() {
 
 main();
 
+/**
+ * Initializes the login form submission event listener to handle user login.
+ */
 function login() {
     const loginForm = document.getElementById("login");
     loginForm.addEventListener("submit", async (event) => {

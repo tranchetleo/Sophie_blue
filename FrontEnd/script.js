@@ -9,8 +9,7 @@ function main() {
 main();
 
 /**
- * Updates the login/logout button and the visibility of the edition mode button
- * based on the user's authentication status stored in sessionStorage.
+ * Updates the login/logout button and the visibility of the edition mode button based on the user's authentication status stored in sessionStorage.
  */
 function isLogged() {
   var login = document.getElementById("loginLink");
@@ -39,10 +38,10 @@ function isLogged() {
   }
 }
 
+// EDITION MODAL
+
 /**
  * Initializes the event listener for the "edition-mode" button to open the edition modal.
- * When the button is clicked, it prevents the default action, displays the modal,
- * and triggers the gallery display function.
  */
 function openEditionModal() {
   var edition_button = document.getElementById("edition-mode");
@@ -75,11 +74,10 @@ function closeEditionModal() {
   });
 }
 
-// Gallery div
+// GALLERY SECTION
+
 /**
- * Displays the gallery by fetching images from the server and populating
- * the gallery section with the retrieved data. Also sets up the event
- * listener for the "Add Image" button to trigger the photo addition process.
+ * Displays the gallery by fetching images from the server and populating the gallery section with the retrieved data.
  */
 function showGallery() {
   var gallery_div = document.getElementById("edit-gallery");
@@ -102,9 +100,7 @@ function showGallery() {
 }
 
 /**
- * Adds a work item to the edit gallery by creating a figure element with an image
- * and a delete icon. The delete icon allows the user to remove the work item from
- * the gallery and triggers the deletion of the corresponding photo.
+ * Adds a work item to the edit gallery by creating a figure element with an image and a delete icon.
  *
  * @param {Object} work - The work object containing details about the item.
  * @param {HTMLElement} photo_div - The parent container where the figure element will be appended.
@@ -134,62 +130,6 @@ function hideGallery() {
   gallery_div.style.display = "none";
 }
 
-
-// Add photo div
-/**
- * Displays the "Add Photo" section and populates the category dropdown with data fetched from the server.
- */
-function showAddPhoto() {
-  var select = document.getElementById("category");
-  select.innerHTML = "";
-  // get the categories from the server
-  fetch("http://localhost:5678/api/categories")
-    .then((response) => response.json())
-    .then((data) => {
-      data.forEach((category) => addCategoryToSelect(category, select));
-    })
-    .catch((error) => console.error(error));
-  var add_photo = document.getElementById("add-photo");
-  add_photo.style.display = "flex";
-  hideGallery();
-}
-
-
-/**
- * Adds a category as an option to a given select element.
- *
- * @param {Object} category - The category object to add.
- * @param {HTMLSelectElement} select - The select element to which the category will be added.
- */
-function addCategoryToSelect(category, select) {
-  var option = document.createElement("option");
-  option.value = category.id;
-  option.textContent = category.name;
-  select.appendChild(option);
-}
-
-/**
- * Hides the "Add Photo" section by setting its display style to "none".
- * Clears the input fields for title, category, and image.
- * Removes the preview image and hides its display.
- */
-function hideAddPhoto() {
-  var add_photo = document.getElementById("add-photo");
-  add_photo.style.display = "none";
-
-  // clear the form
-  var title = document.getElementById("title");
-  var category = document.getElementById("category");
-  var image = document.getElementById("image");
-  title.value = "";
-  category.value = "";
-  image.value = "";
-  // remove the preview image
-  var preview = document.getElementsByClassName("preview")[0];
-  preview.src = "";
-  preview.style.display = "none";
-}
-
 /**
  * Deletes a photo by its ID from the server.
  *
@@ -208,6 +148,59 @@ function deletePhoto(id) {
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     }),
   });
+}
+
+// ADD PHOTO SECTION
+
+/**
+ * Displays the "Add Photo" section and populates the category dropdown with data fetched from the server.
+ */
+function showAddPhoto() {
+  var select = document.getElementById("category");
+  select.innerHTML = "";
+  // get the categories from the server
+  fetch("http://localhost:5678/api/categories")
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach((category) => addCategoryToSelect(category, select));
+    })
+    .catch((error) => console.error(error));
+  var add_photo = document.getElementById("add-photo");
+  add_photo.style.display = "flex";
+  hideGallery();
+}
+
+/**
+ * Adds a category as an option to a given select element.
+ *
+ * @param {Object} category - The category object to add.
+ * @param {HTMLSelectElement} select - The select element to which the category will be added.
+ */
+function addCategoryToSelect(category, select) {
+  var option = document.createElement("option");
+  option.value = category.id;
+  option.textContent = category.name;
+  select.appendChild(option);
+}
+
+/**
+ * Hides the "Add Photo" section by setting its display style to "none" and clears the input fields for title, category, and image.
+ */
+function hideAddPhoto() {
+  var add_photo = document.getElementById("add-photo");
+  add_photo.style.display = "none";
+
+  // clear the form
+  var title = document.getElementById("title");
+  var category = document.getElementById("category");
+  var image = document.getElementById("image");
+  title.value = "";
+  category.value = "";
+  image.value = "";
+  // remove the preview image
+  var preview = document.getElementsByClassName("preview")[0];
+  preview.src = "";
+  preview.style.display = "none";
 }
 
 /**
