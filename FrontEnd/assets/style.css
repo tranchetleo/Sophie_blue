@@ -456,7 +456,7 @@ input[type="submit"]{
 	cursor: pointer;
 }
 
-.error {
+.error, .delete-error {
 	color: red;
 	margin: auto;
 }
