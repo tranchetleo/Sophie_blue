@@ -21,7 +21,6 @@ function login() {
         }
         const response = await fetch("http://localhost:5678/api/users/login", {
             method: "POST",
-            mode: "cors",
             headers: {
                 "Content-Type": "application/json",
             },

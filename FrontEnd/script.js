@@ -64,12 +64,14 @@ function closeEditionModal() {
     var modal = document.getElementById("edition-modal");
     modal.style.display = "none";
     hideAddPhoto();
+    hideGallery();
   });
 
   modal.addEventListener("click", (event) => {
     if (event.target === modal) {
       modal.style.display = "none";
       hideAddPhoto();
+      hideGallery();
     }
   });
 }
@@ -111,10 +113,15 @@ function addWorkToEditGallery(work, photo_div) {
   // create icone delete
   var delete_icon = document.createElement("i");
   delete_icon.classList.add("fa-solid", "fa-trash", "delete-icon");
-  delete_icon.addEventListener("click", (event) => {
+  delete_icon.addEventListener("click", async (event) => {
     event.preventDefault();
-    deletePhoto(work.id);
-    figure.remove();
+    if ((await deletePhoto(work.id)).ok) {
+      figure.remove();
+    } else {
+      // display the error message
+      const error = document.querySelector(".delete-error");
+      error.textContent = "Error deleting photo";
+    }
   });
   figure.appendChild(delete_icon);
   img.src = work.imageUrl;
@@ -128,6 +135,10 @@ function addWorkToEditGallery(work, photo_div) {
 function hideGallery() {
   var gallery_div = document.getElementById("edit-gallery");
   gallery_div.style.display = "none";
+
+  // remove the error message
+  const error = document.querySelector(".delete-error");
+  error.textContent = "";
 }
 
 /**
@@ -136,8 +147,7 @@ function hideGallery() {
  * @param {number|string} id - The ID of the photo to be deleted.
  */
 function deletePhoto(id) {
-  console.log(sessionStorage.getItem("token"));
-  fetch(`http://localhost:5678/api/works/${id}`, {
+  return fetch(`http://localhost:5678/api/works/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -194,9 +204,11 @@ function hideAddPhoto() {
   var title = document.getElementById("title");
   var category = document.getElementById("category");
   var image = document.getElementById("image");
+  var error = document.querySelector(".error");
   title.value = "";
   category.value = "";
   image.value = "";
+  error.textContent = "";
   // remove the preview image
   var preview = document.getElementsByClassName("preview")[0];
   preview.src = "";
