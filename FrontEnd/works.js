@@ -17,6 +17,7 @@ function createWorksCard(work) {
     const img = document.createElement("img");
     const figcaption = document.createElement("figcaption");
     figure.dataset.category = work.category.name;
+    figure.id = 'id'+work.id;
     img.src = work.imageUrl;
     img.alt = work.title;
     figcaption.textContent = work.title;

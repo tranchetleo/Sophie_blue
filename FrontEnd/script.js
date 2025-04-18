@@ -117,6 +117,11 @@ function addWorkToEditGallery(work, photo_div) {
     event.preventDefault();
     if ((await deletePhoto(work.id)).ok) {
       figure.remove();
+      const mainGallery = document.querySelector(".gallery");
+      const figureToRemove = mainGallery.querySelector('#id'+work.id);
+      if (figureToRemove) {
+        figureToRemove.remove();
+      }
     } else {
       // display the error message
       const error = document.querySelector(".delete-error");
@@ -240,17 +245,18 @@ function addPhotoSubmitListener() {
   var submit_button = document.getElementById("submitWork");
   submit_button.addEventListener("click", (event) => {
     event.preventDefault();
-    submitPhoto();
+    const title = document.getElementById("title").value;
+    const categoryID = document.getElementById("category").value;
+    const categoryName = document.getElementById("category").options[document.getElementById("category").selectedIndex].textContent;
+    const image = document.getElementById("image").files[0];
+    submitPhoto(title, categoryID, image, categoryName);
   });
 }
 
 /**
  * Submits a photo along with its title and category to the server.
  */
-function submitPhoto() {
-  var title = document.getElementById("title").value;
-  var category = document.getElementById("category").value;
-  var image = document.getElementById("image").files[0];
+function submitPhoto(title, category, image, categoryName) {
   if (!title || !category || !image) {
     // display the error message
     const error = document.querySelector(".error");
@@ -274,6 +280,16 @@ function submitPhoto() {
       console.log(data);
       hideAddPhoto();
       showGallery();
+      work = {
+        id: data.id,
+        imageUrl: data.imageUrl,
+        title: data.title,
+        category: {
+          id: category,
+          name: categoryName,
+        },
+      }
+      createWorksCard(work);
     })
     .catch((error) => console.error(error));
 }
