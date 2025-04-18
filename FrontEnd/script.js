@@ -112,7 +112,7 @@ function addWorkToEditGallery(work, photo_div) {
   var img = document.createElement("img");
   // create icone delete
   var delete_icon = document.createElement("i");
-  delete_icon.classList.add("fa-solid", "fa-trash", "delete-icon");
+  delete_icon.classList.add("fa-solid", "fa-trash-can", "delete-icon");
   delete_icon.addEventListener("click", async (event) => {
     event.preventDefault();
     if ((await deletePhoto(work.id)).ok) {
